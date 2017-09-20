@@ -1,7 +1,7 @@
 #!/bin/bash
 
 MULTIDEV="update-wp"
-SITENAME="scalewp.io"
+SITENAME="rambletype.com"
 
 UPDATES_APPLIED=false
 
@@ -101,9 +101,9 @@ if [[ "${UPDATES_APPLIED}" = false ]]
 then
     # no updates applied
     echo -e "\nNo updates to apply..."
-    SLACK_MESSAGE="${SITENAME} Circle CI update check #${CIRCLE_BUILD_NUM} by ${CIRCLE_PROJECT_USERNAME}. No updates to apply, nothing deployed."
-    echo -e "\nSending a message to the ${SLACK_CHANNEL} Slack channel"
-    curl -X POST --data "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_USERNAME}\", \"text\": \"${SLACK_MESSAGE}\"}" $SLACK_HOOK_URL
+  #  SLACK_MESSAGE="${SITENAME} Circle CI update check #${CIRCLE_BUILD_NUM} by ${CIRCLE_PROJECT_USERNAME}. No updates to apply, nothing deployed."
+   # echo -e "\nSending a message to the ${SLACK_CHANNEL} Slack channel"
+   # curl -X POST --data "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_USERNAME}\", \"text\": \"${SLACK_MESSAGE}\"}" $SLACK_HOOK_URL
 else
     # updates applied, carry on
 
@@ -140,9 +140,9 @@ else
     then
         # visual regression failed
         echo -e "\nVisual regression tests failed! Please manually check the ${MULTIDEV} multidev..."
-        SLACK_MESSAGE="${SITENAME} Circle CI update check #${CIRCLE_BUILD_NUM} by ${CIRCLE_PROJECT_USERNAME}. Visual regression tests failed on <https://dashboard.pantheon.io/sites/${SITE_UUID}#${MULTIDEV}/code|the ${MULTIDEV} environment>! Please test manually. Visual Regression Report: $DIFF_REPORT_URL"
-        echo -e "\nSending a message to the ${SLACK_CHANNEL} Slack channel"
-        curl -X POST --data "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_USERNAME}\", \"text\": \"${SLACK_MESSAGE}\"}" $SLACK_HOOK_URL
+      #  SLACK_MESSAGE="${SITENAME} Circle CI update check #${CIRCLE_BUILD_NUM} by ${CIRCLE_PROJECT_USERNAME}. Visual regression tests failed on <https://dashboard.pantheon.io/sites/${SITE_UUID}#${MULTIDEV}/code|the ${MULTIDEV} environment>! Please test manually. Visual Regression Report: $DIFF_REPORT_URL"
+     #   echo -e "\nSending a message to the ${SLACK_CHANNEL} Slack channel"
+     #   curl -X POST --data "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_USERNAME}\", \"text\": \"${SLACK_MESSAGE}\"}" $SLACK_HOOK_URL
     else
         # visual regression passed
         echo -e "\nVisual regression tests passed between the ${MULTIDEV} multidev and live."
@@ -180,8 +180,8 @@ else
 	    terminus -n wp $SITE_UUID.live -- core update-db
 
         echo -e "\nVisual regression tests passed! WordPress updates deployed to live..."
-        SLACK_MESSAGE="${SITENAME} Circle CI update check #${CIRCLE_BUILD_NUM} by ${CIRCLE_PROJECT_USERNAME} Visual regression tests passed! WordPress updates deployed to <https://dashboard.pantheon.io/sites/${SITE_UUID}#live/deploys|the live environment>.  Visual Regression Report: $DIFF_REPORT_URL"
-        echo -e "\nSending a message to the ${SLACK_CHANNEL} Slack channel"
-        curl -X POST --data "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_USERNAME}\", \"text\": \"${SLACK_MESSAGE}\"}" $SLACK_HOOK_URL
+     #   SLACK_MESSAGE="${SITENAME} Circle CI update check #${CIRCLE_BUILD_NUM} by ${CIRCLE_PROJECT_USERNAME} Visual regression tests passed! WordPress updates deployed to <https://dashboard.pantheon.io/sites/${SITE_UUID}#live/deploys|the live environment>.  Visual Regression Report: $DIFF_REPORT_URL"
+      #  echo -e "\nSending a message to the ${SLACK_CHANNEL} Slack channel"
+     #   curl -X POST --data "payload={\"channel\": \"${SLACK_CHANNEL}\", \"username\": \"${SLACK_USERNAME}\", \"text\": \"${SLACK_MESSAGE}\"}" $SLACK_HOOK_URL
     fi
 fi
