@@ -27,13 +27,11 @@
       "url": "http://live-rambletype.pantheonsite.io/",
       "referenceUrl": "http://update-wp-rambletype.pantheonsite.io/",
       "hideSelectors": [],
-      "selectors": [
-        "document"
-      ],
+      "selectors": ["document"],
       "readyEvent": null,
       "delay": 1000,
       "misMatchThreshold" : 0.1
-    },
+    }
    
   ],
   "paths": {
